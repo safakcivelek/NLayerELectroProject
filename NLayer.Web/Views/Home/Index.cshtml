@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "_Layout";
+    ViewBag.Title = "Anasayfa | Index";
+}
+<!-- SECTION1 -->
+@await Html.PartialAsync("_FeaturedByCategory")
+<!-- SECTION1 -->
+<!-- SECTION2 -->
+@await Html.PartialAsync("_NewProducts")
+<!-- /SECTION2 -->
+<!-- HOT DEAL SECTION -->
+@await Html.PartialAsync("_HotDeal")
+<!-- /HOT DEAL SECTION -->
+<!-- SECTION -->
+@await Html.PartialAsync("_BestSellers")
+<!-- /SECTION -->
+<!-- SECTION -->
+@await Html.PartialAsync("_TrendProducts")
+<!-- /SECTION -->

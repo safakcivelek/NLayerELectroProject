@@ -1,0 +1,23 @@
+﻿<!-- Seçili ürünler ve kategorileri(3)/ Tarihe göre -->
+@using NLayer.Web.Models;
+@model HomeIndexViewModel
+<div class="section">
+    <div class="container">
+       <div class="row">      
+            @foreach (var item in Model.ProductsWithCategory.Products)
+            {
+                <div class="col-md-4 col-xs-6">
+                    <div class="shop">
+                        <div class="shop-img" style="height:240px;">
+                            <img src="~/img/@item.ImageUrl" alt="">
+                        </div>
+                        <div class="shop-body">
+                            <h3>@item.Category.Name<br>Koleksiyonu</h3>
+                            <a asp-controller="Product" asp-action="Detail" asp-route-productId="@item.Id" class="cta-btn">Alışverişe Başla <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

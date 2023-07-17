@@ -1,0 +1,65 @@
+﻿@using NLayer.Web.Models;
+@model LoggedInUserViewModel;
+@{
+    ViewBag.Title = "Giriş Yapan Kullanıcı";
+}
+<!-- TOP HEADER -->
+@if (Model.User != null)
+{
+    if (Model.Roles == null)
+    {
+        <div id="top-header">
+            <div class="container">
+                <ul class="header-links pull-right">
+                    <li><a href="#"><i class="fa fa-user-o"></i> @Model.User.UserName</a></li>
+                    <li><a asp-area="Admin" asp-controller="Auth" asp-action="UserLogout"><i class="fa fa-sign-out"></i> Çıkış Yap</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div id="top-header">
+            <div class="container">           
+                <div class="dropdown-header">
+                    <ul class="header-links navbar-nav ml-auto ml-md-0  pull-right">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:14px;"><i class="fa fa-user-o"></i> Hesabım <strong>(@Model.User.UserName)</strong></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown" style="border-radius:10px; margin-top:10px; padding-top:15px;padding-bottom:20px;padding-left:30px;padding-right:40px;">
+
+                                <div >
+                                    <a class="dropdown-item"  asp-controller="Order" asp-action="Index" style="color:black;font-size:15px;"><i class="fa fa-shopping-bag" aria-hidden="true" style="color:#337ab7;"></i> Siparişlerim</a>
+                                </div>
+                                <div style="margin-top:8px;">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index" style="color:black;font-size:15px;"><i class="fa fa-server" style="color:#337ab7;"></i> Yönetim Paneli</a>
+                                </div>
+                                <div style="margin-top:8px;">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="ProfilEdit" style="color:black;font-size:15px;"><i class="fa fa-pencil-square-o" style="color:#337ab7;"></i> Profili Düzenle</a>
+                                </div>
+                                <div style="margin-top:8px;">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="PasswordEdit" style="color:black;font-size:15px;"><i class="fa fa-key" style="color:#337ab7;"></i> Şifreyi Değiştir</a>
+                                </div>
+                                <div style="margin-top:8px;">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Auth" asp-action="UserLogout" style="color:black;font-size:15px;"><i class="fa fa-sign-out" aria-hidden="true" style="color:#337ab7;"></i> Çıkış Yap</a>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>      
+    }
+}
+@if (Model.User == null)
+{
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-right">
+                <li><a asp-area="Admin" asp-controller="Auth" asp-action="UserLogin"><i class="fa fa-user-o"></i> Giriş Yap</a></li>
+
+            </ul>
+        </div>
+    </div>
+}
+<!-- /TOP HEADER -->

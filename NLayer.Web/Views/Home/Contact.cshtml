@@ -1,0 +1,60 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model EmailSendDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "İletişim";
+}
+@if (ViewData["Message"] != null)
+{
+<div class="alert alert-success mt-4" role="alert">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <center><span class="fas fa-check fa-lg" style="color:green;"></span> @ViewData["Message"]</center>
+</div>
+}
+<!-- Contact-Css -->
+<link rel="stylesheet" href="~/Electro/css/contact-page.css">
+<!-- /Contact-Css -->
+<div class="contact-form container-fluid" style="margin-top:100px;">
+    <div class="contact-image">
+        <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
+    </div>
+    <form asp-controller="Home" asp-action="Contact" method="post">
+        <h3>Bizlere bir mesaj bırakın</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input   class="form-control" placeholder="İsminiz" asp-for="Name" />
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text"  class="form-control" placeholder="E-Posta Adresiniz" asp-for="Email" />
+                    <span class="text-danger" asp-validation-for="Email"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text"  class="form-control" placeholder="Konu / Başlık" asp-for="Subject" />
+                    <span class="text-danger" asp-validation-for="Subject"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit"  class="btnContact">Gönder</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <textarea  class="form-control" placeholder="Mesajınız..." asp-for="Message" style="width: 100%; height: 150px;"></textarea>
+                    <span class="text-danger" asp-validation-for="Message"></span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="text-center" style="margin-bottom:100px;">
+        <span><i class="fa fa-instagram fa-3x" aria-hidden="true" style="color:#D10024;"></i></span>
+        <span style="margin-left:30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true" style="color:#D10024;"></i></span>
+        <span style="margin-left:30px;"><i class="fa fa-google fa-3x" aria-hidden="true" style="color:#D10024;"></i></span>
+        <span style="margin-left:30px;"><i class="fa fa-youtube-play fa-3x" aria-hidden="true" style="color:#D10024;"></i></span>
+        <span style="margin-left:30px;"><i class="fa fa-phone fa-3x" aria-hidden="true" style="color:#D10024;"></i></span>
+        <span style="margin-left:30px;"><i class=" fa fa-map-marker fa-3x" aria-hidden="true" style="color:#D10024;"></i></span>
+    </div>
+</div>
+@section Scripts{
+
+}

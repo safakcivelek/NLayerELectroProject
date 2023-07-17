@@ -1,0 +1,99 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model UserDto
+@{
+    ViewData["Title"] = "Kullanıcı Detay Sayfası";
+}
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:yellow;height:60px;">
+                <h5 class="modal-title"><span class="fas fa-newspaper"></span> @Model.User.Id Numaralı Kullanıcı Görüntüleniyor...</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="İptal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" style="height:150px;">
+                        <thead style="background-color:aqua;" >
+                            <tr>
+                                <th style="width:3%">ID</th>
+                                <th style="width:10%">Kullanıcı Adı</th>
+                                <th style="width:10%">E-Posta Adresi</th>
+                                <th style="width:10%">Telefon Numarası</th>
+                                <th style="width:10%">Adı</th>
+                                <th style="width:10%">Soyadı</th>
+                                <th style="width:10%">Website</th>                                
+                            </tr>                           
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.User.Id</td>
+                                <td>@Model.User.UserName</td>
+                                <td>@Model.User.Email</td>
+                                <td>@Model.User.PhoneNumber</td>
+                                <td>@Model.User.FirstName</td>
+                                <td>@Model.User.LastName</td>
+                                <td>@Model.User.WebsiteLink</td>                              
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                      
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" style="height:150px;">
+                        <thead style="background-color:aqua;">
+                            <tr>
+                                <th style="width:3%">ID</th>                                
+                                <th style="width:10%">Twitter</th>
+                                <th style="width:10%">Facebook</th>
+                                <th style="width:10%">Instagram</th>
+                                <th style="width:10%">Youtube</th>
+                                <th style="width:10%">GitHub</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.User.Id</td>
+                                <td>@Model.User.TwitterLink</td>
+                                <td>@Model.User.FacebookLink</td>
+                                <td>@Model.User.InstagramLink</td>
+                                <td>@Model.User.YoutubeLink</td>
+                                <td>@Model.User.GitHubLink</td>
+                           </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" style="height:150px;">
+                        <thead  style="background-color:aqua;">
+                            <tr>                              
+                                <th style="width:3%">ID</th>
+                                <th style="width:13%">Kullanıcı Resimi</th>
+                                <th >Hakkında</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.User.Id</td>                                
+                                <td><img src="~/img/@Model.User.Picture" class="my-image-table" /></td>
+                                <td>@Model.User.About</td>                                  
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-block" data-dismiss="modal"><span class="fas fa-times"></span> Kapat</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+

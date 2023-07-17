@@ -1,0 +1,92 @@
+﻿@using NLayer.Web.Models.Cart;
+@model Cart
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Order Details -->
+            <div class="col-md-10 order-details">
+                <div class="section-title text-center">
+                    <h3 class="title" style="margin-bottom:20px;">Sepetim</h3>
+                    @if (Model.CartLines.Count > 0)
+                    {
+                        <div class="order-summary">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Resim</th>
+                                        <th class="text-center">Ürün</th>
+                                        <th class="text-center">Fiyat</th>
+                                        <th class="text-center">Adet</th>
+                                        <th class="text-center">Ara Toplam</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.CartLines)
+                                    {
+                                        <tr>
+                                            <td><img src="~/img/@item.Product.ImageUrl" width="50px;" /></td>
+                                            <td>@item.Product.Name</td>
+                                            <td>@item.Product.Price</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.SubTotal.ToString("C2")</td>
+
+                                            <td><a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-Id="@item.Product.Id" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span></a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3"></td>
+                                        <td><strong>TOPLAM =</strong></td>
+                                        <td><h4 style="color:#D10024;">@Model.Total().ToString("C2")</h4></td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Sepetinizde ürün bulunmamaktadır.
+                        </div>
+                    }
+                    <a class="btn btn-primary btn-sm" style="margin-left:54%;" asp-controller="Home" asp-action="Index"><span class="fa fa-arrow-circle-left"></span> Alişverişe Devam Et</a>
+                </div>              
+                @if (Model.CartLines.Count > 0)
+                {                    
+                    if (ViewData["user"] == null)
+                    {
+                        <div class="alert alert-warning text-center" role="alert">
+                            <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Alışverişi tamamlamak için hesabınıza giriş yapmalısınız !</p>
+                        </div>
+                        <div style="display:flex; justify-content:center; align-items:center;">
+                            <a asp-area="Admin" asp-controller="Auth" asp-action="UserLogin" class="col-md-3 btn btn-success" style="margin-right:20px;"><span class="fa fa-sign-in " aria-hidden="true"></span> Giriş Yap</a>
+                            <a asp-area="Admin" asp-controller="Auth" asp-action="UserLogin" class="col-md-3 btn btn-default "><span class="fa fa-user-plus" aria-hidden="true"></span> Hesap Oluştur!</a>
+                        </div>                       
+                    }
+                    else
+                    {
+                        <a asp-controller="Cart" asp-action="Checkout" class="primary-btn order-submit"><span class="fa fa-check" aria-hidden="true"></span> Alışverişi Tamamla</a>
+                    }
+                }
+                else
+                {
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-warning order-submit"><span class="fa fa-plus" aria-hidden="true"></span> Ürün Ekle</a>
+                }
+            </div>
+            <!-- /Order Details -->           
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->

@@ -1,0 +1,150 @@
+﻿@using NLayer.Web.Areas.Admin.Models;
+@model DashboardViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Yönetim Paneli";
+}
+<ol class="breadcrumb  mt-4">
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Yönetim Paneli</a></li>
+    <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="Index">Mağaza</a></li>
+</ol>
+<div class="row mt-4">
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-warning text-white mb-4">
+            <div class="card-body">Kategoriler (@Model.CategoriesCount)</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" asp-area="Admin" asp-controller="Category" asp-action="Index">Detaylar</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-body">Ürünler (@Model.ProductsCount)</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" asp-area="Admin" asp-controller="Product" asp-action="Index">Detaylar</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>   
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-danger text-white mb-4">
+            <div class="card-body">Siparişler (@Model.OrdersCount)</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Detaylar</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-secondary text-white mb-4">
+            <div class="card-body">Yorumlar (@Model.CommentsCount)</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" asp-area="Admin" asp-controller="Comment" asp-action="Index">Detaylar</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">Kullanıcılar (@Model.UsersCount)</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" asp-area="Admin" asp-controller="User" asp-action="Index">Detaylar</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">Kullanıcılar (@Model.UsersCount)</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" asp-area="Admin" asp-controller="User" asp-action="Index">Detaylar</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">Kullanıcılar (@Model.UsersCount)</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" asp-area="Admin" asp-controller="User" asp-action="Index">Detaylar</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">Kullanıcılar (@Model.UsersCount)</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" asp-area="Admin" asp-controller="User" asp-action="Index">Detaylar</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mb-4">
+    <div class="card-header" style="background-color:#212529; color:white;height:55px;">
+        <i class="fas fa-table mr-1"></i>
+        Son Eklenen Ürünler
+    </div>
+    <div class="card-body">       
+            <table class="table table-bordered table-hover" id="productTable">
+            <thead style="background-color:#e9ecef;">
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori</th>
+                        <th>Ürün Adı</th>
+                        <th>Küçük Resim</th>
+                        <th>Fiyat</th>
+                        <th>Stok</th>
+                        <th>Beğeni Puanı</th>
+                        <th>Beğeni Sayısı</th>
+                        <th>Yorum Sayısı</th>
+                        <th>Tarih</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                    </tr>
+                </thead>
+            <tfoot style="background-color:#e9ecef;">
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori</th>
+                        <th>Adı</th>
+                        <th>Küçük Resim</th>
+                        <th>Fiyat</th>
+                        <th>Stok</th>
+                        <th>Beğeni Puanı</th>
+                        <th>Beğeni Sayısı</th>
+                        <th>Yorum Sayısı</th>
+                        <th>Tarih</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var product in Model.Products.Products)
+                    {
+                        <tr>
+                            <td>@product.Id</td>
+                            <td>@product.Category.Name</td>
+                            <td>@product.Name</td>
+                            <td><img src="~/img/@product.ImageUrl" class="my-image-table" /></td>
+                            <td>@product.Price</td>
+                            <td>@product.Stock</td>
+                            <td>@product.StarPoint</td>
+                            <td>@product.StarGivenUserCount</td>
+                            <td>@product.Comments.Count</td>
+                            <td>@product.CreatedDate</td>
+                            <td>@(product.IsActive ? "Evet" : "Hayır")</td>
+                            <td>@(product.IsDeleted ? "Evet" : "Hayır")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+@section Scripts
+{
+    <script src="~/AdminElectro/js/homeIndex.js" type="application/ecmascript"></script>
+}

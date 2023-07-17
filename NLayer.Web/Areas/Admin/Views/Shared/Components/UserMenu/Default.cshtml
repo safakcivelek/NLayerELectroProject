@@ -1,0 +1,15 @@
+﻿
+@using NLayer.Web.Areas.Admin.Models;
+@model UserViewModel
+
+<ul class="navbar-nav ml-auto ml-md-0">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i> @Model.User.UserName</a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+
+            <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="ProfilEdit">Profil Düzenle</a>
+            <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="PasswordEdit">Şifre Değiştir</a>
+            <a class="dropdown-item" asp-area="Admin" asp-controller="Auth" asp-action="UserLogout">Çıkış Yap</a>
+        </div>
+    </li>
+</ul>

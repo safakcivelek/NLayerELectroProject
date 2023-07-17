@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Kullanıcı Ekle";
+}
+@using NLayer.Core.DTOs.Concert;
+@using NLayer.Web.Areas.Admin.Models;
+@model UserAddViewModel
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-success mt-4" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <center><span class="fas fa-check fa-lg" style="color:green;"></span> @ViewData["Message"]</center>
+    </div>
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg border-5 rounded-lg mt-4">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4"><span class="fa-solid fa-user-plus" style="color:#007bff;"></span> Kullanıcı Ekle</h3></div>
+                <div class="card-body">
+
+                    <form asp-area="Admin" asp-controller="User" asp-action="Add" enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.UserName"></label>
+                                <input asp-for="UserAddDto.UserName" class="form-control" placeholder="Lütfen, kullanıcı adı giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.UserName"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.Email"></label>
+                                <input type="email" asp-for="UserAddDto.Email" class="form-control" placeholder="Lütfen, e-posta adresi giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.Email"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.Password" ></label>
+                                <input type="password" asp-for="UserAddDto.Password" class="form-control" placeholder="Lütfen, şifre giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.Password"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.PhoneNumber" ></label>
+                                <input type="text" asp-for="UserAddDto.PhoneNumber" class="form-control" placeholder="Lütfen, telefon numarası giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.PhoneNumber"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.FirstName"></label>
+                                <input type="text" class="form-control" asp-for="UserAddDto.FirstName" placeholder="Lütfen, ad giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.FirstName"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.LastName"></label>
+                                <input type="text" class="form-control" asp-for="UserAddDto.LastName" placeholder="Lütfen, soyad giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.LastName"></span>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label asp-for="UserAddDto.About"></label>
+                                <textarea class="form-control" asp-for="UserAddDto.About" placeholder="Lütfen, hakkında bilgisi giriniz." rows="4"></textarea>
+                                <span class="text-danger" asp-validation-for="UserAddDto.About"></span>
+                            </div>                           
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.TwitterLink"></label>
+                                <input type="text" class="form-control" asp-for="UserAddDto.TwitterLink" placeholder="Lütfen, twitter profil link'i giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.TwitterLink"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.FacebookLink"></label>
+                                <input type="text" class="form-control" asp-for="UserAddDto.FacebookLink" placeholder="Lütfen, facebook profil link'i giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.FacebookLink"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.InstagramLink"></label>
+                                <input type="text" class="form-control" asp-for="UserAddDto.InstagramLink" placeholder="Lütfen, instagram profil link'i giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.InstagramLink"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.LinkedInLink"></label>
+                                <input type="text" class="form-control" asp-for="UserAddDto.LinkedInLink" placeholder="Lütfen, linkedin profil link'i giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.LinkedInLink"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.YoutubeLink"></label>
+                                <input type="text" class="form-control" asp-for="UserAddDto.YoutubeLink" placeholder="Lütfen, youtube profil link'i giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.YoutubeLink"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.GitHubLink"></label>
+                                <input type="text" class="form-control" asp-for="UserAddDto.GitHubLink" placeholder="Lütfen, github profil link'i giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.GitHubLink"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.WebsiteLink"></label>
+                                <input type="text" class="form-control" asp-for="UserAddDto.WebsiteLink" placeholder="Lütfen, website link'i giriniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.WebsiteLink"></span>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="UserAddDto.PictureFile" class="mt-1 "></label>
+                                <input type="file" accept="image/*" asp-for="UserAddDto.PictureFile" class="form-control-file" placeholder="Lütfen, resim seçiniz." />
+                                <span class="text-danger" asp-validation-for="UserAddDto.PictureFile"></span>
+                            </div>                            
+                        </div>
+                        <hr />
+                        <div class="small">
+                            <button class="btn btn-primary btn-block"><span class="fas fa-save"></span> Kaydet</button>
+                            <a class="btn btn-danger btn-block" asp-area="Admin" asp-controller="User" asp-action="Add"><span class="fas fa-times"></span> İptal</a>                           
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <div>                       
+                        <a asp-area="Admin" asp-controller="User" asp-action="Index"><span class="fas fa-list-ul"></span> <span>Kullanıcı listesine geri dön!</span></a>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+</div>

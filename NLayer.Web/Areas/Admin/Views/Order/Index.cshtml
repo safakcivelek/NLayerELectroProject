@@ -1,0 +1,99 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@using NLayer.Core.Utilities.Results.ComplexTypes;
+@model OrderListDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Şiparişler Listesi";
+}
+<ol class="breadcrumb mt-3">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Admin</a></li>
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Order" asp-action="Index">Siparişler</a></li>
+</ol>
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="card mb-3 mt-3">
+    <div class="card-header" style="background-color:#212529; color:white;height:55px;">
+        <i class="fas fa-table mr-1"></i>
+        Siparişler Listesi
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover" id="ordersTable">
+            <thead style="background-color:#e9ecef;">
+                <tr>
+                    <th>#</th>
+                    <th>Müşteri</th>
+                    <th>Açıklama</th>
+                    <th>Durumu</th>
+                    <th>Adresi</th>
+                    <th>Ülke</th>
+                    <th>Şehir</th>
+                    <th>Posta Kodu</th>
+                    <th>Aktif Mi?</th>
+                    <th>Silinmiş Mi?</th>
+                    <th style="text-align:center;vertical-align:middle;">İşlemler</th>                   
+                </tr>
+            </thead>
+            <tfoot style="background-color:#e9ecef;">
+                <tr>
+                    <th>#</th>
+                    <th>Müşteri</th>
+                    <th>Açıklama</th>
+                    <th>Durumu</th>
+                    <th>Adresi</th>
+                    <th>Ülke</th>
+                    <th>Şehir</th>
+                    <th>Posta Kodu</th>
+                    <th>Aktif Mi?</th>
+                    <th>Silinmiş Mi?</th>
+                    <th style="text-align:center;vertical-align:middle;">İşlemler</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var order in Model.Orders)
+                {
+                    <tr name="@order.Id">
+                        <td>@order.Id</td>
+                        <td>@order.User.UserName</td>
+                        <td>@order.Description</td>
+                        @if (!order.IsActive)
+                        {
+                            <td style="color:red;">Sipariş Alındı, Onay Bekleniyor...</td>
+                        }
+                        else
+                        {
+                            <td style="color:green;">Sipariş Onaylandı.</td>
+                        }
+
+                        <td>@(order.Address.Length > 50 ? order.Address.Substring(0, 50) + " ..." : order.Address)</td>
+                        <td>@order.Country</td>
+                        <td>@order.City</td>
+                        <td>@order.PostalCode</td>
+                        <td>@(order.IsActive ? "Evet" : "Hayır")</td>
+                        <td>@(order.IsDeleted ? "Evet" : "Hayır")</td>
+                        <td style="text-align:center;vertical-align:middle;">
+                            <div>
+                                <a class="btn btn-primary btn-sm btn-update" asp-area="Admin" asp-action="Update" asp-controller="Order" asp-route-orderId="@order.Id"><span class="fas fa-edit"></span></a>
+
+                                <button class="btn btn-danger btn-sm  btn-delete" orderId="@order.Id"><span class="fas fa-minus-circle"></span></button>
+                            </div>                            
+                            <div class="mt-2">
+                                <button class="btn btn-info btn-sm btn-detail" orderId="@order.Id"><span class="fas fa-newspaper"></span></button>
+
+                                @if (order.IsActive)
+                                {
+                                    <button class="btn btn-success btn-sm btn-notApprove" orderId="@order.Id"><span class="fas fa-thumbs-up"></span></button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-warning btn-sm btn-approve" orderId="@order.Id"><span class="fas fa-thumbs-down"></span></button>
+                                }
+                            </div>                            
+                        </td>                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/adminelectro/js/ordersindex.js" type="application/ecmascript"></script>
+}

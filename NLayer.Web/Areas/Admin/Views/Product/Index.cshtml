@@ -1,0 +1,83 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model ProductListDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Ürünler Listesi";
+}
+<ol class="breadcrumb mt-3">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Admin</a></li>
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Product" asp-action="Index">Ürünler</a></li>
+</ol>
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="card mb-3 mt-3">
+    <div class="card-header" style="background-color:#212529; color:white;height:55px;">
+        <i class="fas fa-table mr-1"></i>
+        Ürünler Listesi
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover" id="productsTable">
+            <thead style="background-color:#e9ecef;">               
+                <tr>
+                    <th>#</th>
+                    <th>Kategori</th>
+                    <th>Ürün Adı</th>
+                    <th>Küçük Resim</th>
+                    <th>Fiyat</th>
+                    <th>Stok</th>                    
+                    <th>Yorum Sayısı</th>
+                    <th>İndirimli Mi?</th>
+                    <th>Aktif Mi?</th>
+                    <th>Silinmiş Mi?</th>
+                    <th style="text-align:center;vertical-align:middle;"><a asp-action="Add" asp-controller="Product" asp-area="Admin" class="btn btn-success ml-3">Ekle</a></th>
+                </tr>
+            </thead>
+            <tfoot style="background-color:#e9ecef;">
+                <tr>
+                    <th>#</th>
+                    <th>Kategori</th>
+                    <th>Adı</th>
+                    <th>Küçük Resim</th>
+                    <th>Fiyat</th>
+                    <th>Stok</th>                    
+                    <th>Yorum Sayısı</th>
+                    <th>İndirimli Mi?</th>
+                    <th>Aktif Mi?</th>
+                    <th>Silinmiş Mi?</th>
+                    <th style="text-align:center;vertical-align:middle;">İşlemler</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var product in Model.Products)
+                {
+                    <tr name="@product.Id">
+                        <td>@product.Id</td>
+                        <td>@product.Category.Name</td>
+                        <td>@product.Name</td>
+                        <td><img src="~/img/@product.ImageUrl" class="my-image-table" /></td>
+                        <td>@product.Price</td>
+                        <td>@product.Stock</td>
+                        
+                        <td>@product.Comments.Count</td>
+                        <td>@(product.IsDiscounted ? "Evet" : "Hayır")</td>
+                        <td>@(product.IsActive ? "Evet" : "Hayır")</td>
+                        <td>@(product.IsDeleted ? "Evet" : "Hayır")</td>
+
+                        <td style="text-align:center;vertical-align:middle;">                          
+                            <div>
+                                <a class="btn btn-primary btn-sm btn-update" asp-area="Admin" asp-action="Update" asp-controller="Product" asp-route-productId="@product.Id"><span class="fas fa-edit"></span></a>
+                                <button class="btn btn-danger btn-sm  btn-delete" productId="@product.Id"><span class="fas fa-minus-circle"></span></button>
+                            </div>
+                            <div class="mt-2">
+                                <button class="btn btn-info btn-sm btn-detail" productId="@product.Id"><span class="fas fa-newspaper"></span></button>
+                                <button class="btn btn-info btn-sm btn-detail" productId="@product.Id"><span class="fas fa-newspaper"></span></button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/AdminElectro/js/productsIndex.js" type="application/ecmascript"></script>
+}

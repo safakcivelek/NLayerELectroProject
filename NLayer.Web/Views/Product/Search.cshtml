@@ -1,0 +1,166 @@
+﻿@using NLayer.Web.Models;
+@model ProductSearchViewModel
+@{
+    ViewBag.Title = "Arama Sonuçları";
+    Layout = "_Layout";
+}
+@*Bu alanı partial vb olarak yönetebilirim *@
+@*Şimdilik pasife alıyorum daha sonra yöneticem*@
+<!-- BREADCRUMB -->
+@*<div id="breadcrumb" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">All Categories</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li class="active">Headphones (227,490 Results)</li>
+                    <li>Bu alanı çıkartabilirim </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>*@
+<!-- /BREADCRUMB -->
+<!-- SECTION -->
+<div class="section">
+    <div class="container">
+        <div class="row">
+
+            <!-- LeftSideBar -->
+            @await Component.InvokeAsync("LeftSideBar")
+            <!-- LeftSideBar -->
+            <!-- STORE -->
+            <div id="store" class="col-md-9">
+                @*Storefilterı partial olarak yönetebilirim...*@
+                <!-- store top filter -->
+                <div class="store-filter clearfix">
+                    <div class="store-sort">
+                        <input type="hidden" id="keyword" value="@Model.Keyword" />
+                        <input type="hidden" id="current-page" value="@Model.ProductListDto.CurrentPage" />
+                        <label>
+                            Sıralama:
+                            <select class="input-select" id="select-is-ascending">
+                                <option selected="@(Model.ProductListDto.IsAscending==true ? "selected" : null)" value="true">En Düşük</option>
+                                <option selected="@(Model.ProductListDto.IsAscending==false ? "selected" : null)" value="false">En Yüksek</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            Göster:
+                            <select class="input-select" id="select-page-size">
+                                <option selected="@(Model.ProductListDto.PageSize==6 ? "selected" : null)" value="6">6</option>
+                                <option selected="@(Model.ProductListDto.PageSize==12 ? "selected" : null)" value="12">12</option>
+                                <option selected="@(Model.ProductListDto.PageSize==18 ? "selected" : null)" value="18">18</option>
+                            </select>
+                        </label>
+                    </div>
+                    <ul class="store-grid">
+                        <li class="active"><i class="fa fa-th"></i></li>
+                        <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+                    </ul>
+                </div>
+                <!-- /store top filter -->
+                <!-- store products -->
+                <div class="row">
+                    @foreach (var item in Model.ProductListDto.Products)
+                    {
+                        <div class="col-md-4 col-xs-6">
+                            <!-- product -->
+                            <div class="product">
+                                <div class="product-img">
+                                    <img src="~/img/@item.ImageUrl" alt="@item.Name">
+                                    <div class="product-label">
+                                        <span class="sale">-30%</span>
+                                        <span class="new">YENİ</span>
+                                    </div>
+                                </div>
+                                <div class="product-body">
+                                    <p class="product-category">@item.Category.Name</p>
+                                    <h3 class="product-name"><a href="#">@item.Name.Substring(0,item.Name.Length > 22 ? 22 : item.Name.Length)...</a></h3>
+                                    <h4 class="product-price">@item.Price.ToString("C2") <del class="product-old-price">@item.Price.ToString("C2")</del></h4>
+                                    <div class="product-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product-btns">
+                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">istek listesine ekle</span></button>
+                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">karşılaştır</span></button>
+                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">gözat</span></button>
+                                    </div>
+                                </div>
+                                <div class="add-to-cart">
+                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> sepete ekle</button>
+                                </div>
+                            </div>
+                            <!-- /product -->
+                        </div>
+                    }
+                </div>
+                <!-- /store products -->
+                @* Sayfalama alanını partial olarak yönetebilirim*@
+                <!-- Pagination -->
+                <div class="store-filter clearfix">
+                    <span class="store-qty">Gösterilen ürünler (@Model.ProductListDto.PageSize-@Model.ProductListDto.TotalCount)</span>
+                    <ul class="store-pagination">   
+                        @{
+                            @if (Model.ProductListDto.ShowPrevious)
+                            {
+                                <li style="width:65px;">
+                                    <a asp-route-currentPage="@(Model.ProductListDto.CurrentPage-1)" asp-route-isAscending="@Model.ProductListDto.IsAscending" asp-route-pageSize="@Model.ProductListDto.PageSize" asp-route-keyword="@Model.Keyword">Önceki</a>
+                                </li>
+                            }
+                            @for (var i = 1; i <= Model.ProductListDto.TotalPages; i++)
+                            {
+                                <li class="@(i == Model.ProductListDto.CurrentPage ? "active" : "")">
+                                    <a asp-route-currentPage="@i" asp-route-isAscending="@Model.ProductListDto.IsAscending" asp-route-pageSize="@Model.ProductListDto.PageSize" asp-route-keyword="@Model.Keyword">@i</a>
+                                </li>
+                            }
+                            @if (Model.ProductListDto.ShowNext)
+                            {
+                                <li style="width:65px;">
+                                    <a asp-route-currentPage="@(Model.ProductListDto.CurrentPage+1)" asp-route-isAscending="@Model.ProductListDto.IsAscending" asp-route-pageSize="@Model.ProductListDto.PageSize" asp-route-keyword="@Model.Keyword">Sonraki</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <!-- Pagination -->
+                @*<span class="fa fa-angle-right"></span>*@
+            </div>
+            <!-- /STORE -->
+
+        </div>
+    </div>
+</div>
+<!-- /SECTION -->
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $(function () {
+
+                const selectPageSize = $('#select-page-size');
+                const selectIsAscending = $('#select-is-ascending');
+                const keyword = $('#keyword').val();
+                const currentPage = $('#current-page').val();
+                const keywordQuery = keyword != null ? `&keyword=${keyword}` : null;
+
+                selectPageSize.on('change',
+                    function () {
+                        window.location.href = "/Home/Products" +
+                            `/?pageSize=${selectPageSize.val()}&isAscending=${selectIsAscending.val()}${keywordQuery != null ? keywordQuery : null}&currentPage=${currentPage}`;
+                    });
+                selectIsAscending.on('change',
+                    function () {
+                        window.location.href = "/Home/Products" +
+                            `/?pageSize=${selectPageSize.val()}&isAscending=${selectIsAscending.val()}${keywordQuery != null ? keywordQuery : null}&currentPage=${currentPage}`;
+                    });
+            });
+        });
+    </script>
+}

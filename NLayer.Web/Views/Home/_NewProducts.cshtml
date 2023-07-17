@@ -1,0 +1,98 @@
+﻿<!-- Yeni ürünler ve kategorileri(5) / Tarihe göre -->
+@using NLayer.Web.Models;
+@model HomeIndexViewModel
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Yeni Ürünler</h3>
+                    <div class="section-nav">
+                        <ul class="section-tab-nav tab-nav">
+                            @foreach (var category in Model.Categories.Categories)
+                            {
+                                @*<li class="active"><a data-toggle="tab" href="#tab1">@category.Name</a></li>*@
+                                <li><a data-toggle="tab1" asp-controller="Home" asp-action="Products" asp-route-categoryId="@category.Id">@category.Name</a></li>
+                            }
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /section title -->
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab1" class="tab-pane active">
+                            <div class="products-slick" data-nav="#slick-nav-1">
+                                @foreach (var item in Model.NewProducts.Products)
+                                {
+                                    <!-- product -->
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img src="~/img/@item.ImageUrl">
+
+                                            <div class="product-label">
+                                                <span class="sale">-@(item.IsDiscounted == true ? item.Discount * 100 : item.Discount)%</span>
+                                                <span class="new">YENİ</span>
+                                            </div>
+                                             
+                                        </div>
+                                        <div class="product-body">
+                                            <p class="product-category">@item.Category.Name</p>
+                                            <h3 class="product-name">
+                                                <a asp-controller="Product" asp-action="Detail" asp-route-productId="@item.Id">
+                                                    @(item.Name.Length > 22
+                                                        ? item.Name.Substring(0, 22) + "..."
+                                                        : item.Name)
+                                                </a>
+                                            </h3>
+                                            <h4 class="product-price">
+                                                @if (item.IsDiscounted)
+                                                {
+                                                    @((item.Price - (item.Price * (Convert.ToDecimal(item.Discount)))).ToString("C2"))
+                                                    
+                                                    <del class="product-old-price">@item.Price.ToString("C2")</del>
+                                                }
+                                                else
+                                                {
+                                                    @item.Price.ToString("C2")
+                                                    
+                                                }
+                                            </h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">istek listesine ekle</span></button>
+                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">karşılaştır</span></button>
+                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">gözat</span></button>
+                                            </div>
+                                        </div>
+
+                                        <div class="add-to-cart">
+                                            <form asp-controller="Cart" asp-action="AddToCart" asp-route-Id="@item.Id">
+                                                <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Sepete Ekle</button>
+                                            </form>
+                                        </div>
+                                        
+                                    </div>
+                                }
+                                <!-- /product -->
+                            </div>
+                            <div id="slick-nav-1" class="products-slick-nav"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Products tab & slick -->
+        </div>
+    </div>
+</div>

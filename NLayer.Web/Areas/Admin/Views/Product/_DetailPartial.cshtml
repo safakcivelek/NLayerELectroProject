@@ -1,0 +1,112 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model ProductDto
+@{
+    ViewData["Title"] = "Ürün Detay";
+}
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:yellow;height:60px;">
+                <h5 class="modal-title"><span class="fas fa-newspaper"></span> @Model.Product.Id Numaralı Ürün Görüntüleniyor...</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="İptal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height:170px;">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" style="height:150px;">
+                        <thead style="background-color:aqua;" >
+                            <tr>
+                                <th style="width:3%">ID</th>
+                                <th style="width:10%">Resim</th>
+                                <th style="width:10%">Ürün Adı</th>
+                                <th style="width:10%">Kategori</th>
+                                <th style="width:10%">Fiyat</th>
+                                <th style="width:10%">Stok</th>
+                                <th style="width:10%">İndirim Oranı</th>
+                                <th style="width:10%">İndirimli Fiyatı</th>
+                            </tr>                           
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.Product.Id</td>
+                                <td><img src="~/img/@Model.Product.ImageUrl" class="my-image-table" /></td>
+                                <td>@Model.Product.Name</td>
+                                <td>@Model.Product.Category.Name</td>
+                                <td>@Model.Product.Price</td>
+                                <td>@Model.Product.Stock</td>
+                                <td>@((Model.Product.IsDiscounted) ? (Model.Product.Discount * 100)+"%" : 0+"%")</td>
+                                <td>@(Model.Product.IsDiscounted 
+                                    ? (Model.Product.Price) - ((Model.Product.Price) * (Convert.ToDecimal(Model.Product.Discount))) 
+                                    : "Yok")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                      
+            <div class="modal-body" style="height:170px;">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" style="height:150px;">
+                        <thead style="background-color:aqua;">
+                            <tr>
+                                <th style="width:3%">ID</th>                                
+                                <th style="width:10%">Açıklama</th>                                                              
+                                <th style="width:10%">Puanı</th>
+                                <th style="width:10%">Puan Sayısı</th>
+                                <th style="width:10%">Yorum Saysı</th>
+                                <th style="width:10%">İndirimli Mi?</th>
+                                <th style="width:10%">Aktif Mi?</th>
+                                <th style="width:10%">Silinmiş Mi?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.Product.Id</td>                                
+                                <td>@Model.Product.Description</td>
+                                <td>@Model.Product.StarPoint</td>
+                                <td>@Model.Product.StarGivenUserCount</td>
+                                <td>@Model.Product.Comments.Count</td>
+                                <td>@(Model.Product.IsDiscounted ? "Evet" : "Hayır")</td>
+                                <td>@(Model.Product.IsActive ? "Evet" : "Hayır")</td>
+                                <td>@(Model.Product.IsDeleted ? "Evet" : "Hayır")</td>
+                           </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-body" style="height:170px;">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" style="height:150px;">
+                        <thead  style="background-color:aqua;">
+                            <tr>                              
+                                <th style="width:3%">ID</th>
+                                <th style="width:10%">Oluşturulma Tarihi</th>
+                                <th style="width:10%">Oluşturan Kullanıcı Adı</th>
+                                <th style="width:10%">Son Düzenlenme Tarihi</th>
+                                <th style="width:10%">Son Düzenleyen Kullanıcı Adı</th>                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.Product.Id</td>                                
+                                <td>@Model.Product.CreatedDate</td>
+                                <td>@Model.Product.CreatedByName</td>
+                                <td>@Model.Product.ModifiedDate</td>
+                                <td>@Model.Product.ModifiedByName</td>                                   
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-block" data-dismiss="modal"><span class="fas fa-times"></span> Kapat</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+

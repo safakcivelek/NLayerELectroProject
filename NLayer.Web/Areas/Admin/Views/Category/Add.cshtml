@@ -1,0 +1,60 @@
+﻿@using NLayer.Web.Areas.Admin.Models;
+@model CategoryAddViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Kategori Ekle";
+}
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-success mt-4" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <center><span class="fas fa-check fa-lg" style="color:green;"></span> @ViewData["Message"]</center>
+    </div>
+}
+<div class="container">  
+    <div class="row justify-content-center">
+        <div class="col-lg-7">             
+            <div class="card shadow-lg border-5 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4"><span class="fa-solid fa-user-plus" style="color:#007bff;"></span> Kategori Ekle</h3></div>
+                <div class="card-body">
+
+                    <form asp-area="Admin" asp-controller="Category" asp-action="Add">
+                        <div class="form-group">
+                            <label asp-for="CategoryAddDto.Name" class="mb-1 ml-1"></label>
+                            <input asp-for="CategoryAddDto.Name" class="form-control" placeholder="Lütfen, kategori adı giriniz." />
+                            <span class="text-danger" asp-validation-for="CategoryAddDto.Name"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CategoryAddDto.Description" class="mb-1 ml-1"></label>
+                            <textarea class="form-control" rows="3" asp-for="CategoryAddDto.Description" placeholder="Lütfen, kategori açıklaması giriniz."></textarea>
+                            <span class="text-danger" asp-validation-for="CategoryAddDto.Description"></span>
+                        </div>                     
+                        <div class="form-group form-check ml-1">
+                            <input asp-for="CategoryAddDto.IsActive" type="checkbox" class="form-check-input" checked/>
+                            <label asp-for="CategoryAddDto.IsActive" class="form-check-label"></label>
+                            <span class="text-danger" asp-validation-for="CategoryAddDto.IsActive"></span>
+                        </div>
+                        <hr />
+                        <div class="form-group mt-4 mb-0 ">
+                            <button class="btn btn-primary btn-block"><span class="fas fa-save"></span> Kaydet</button>
+                            <a class="btn btn-danger btn-block" asp-area="Admin" asp-controller="Category" asp-action="Add"><span class="fas fa-times"></span> İptal</a>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="card-footer text-center">
+                    <div>
+                        <a asp-area="Admin" asp-controller="Category" asp-action="Index"><span class="fas fa-list-ul"></span> <span>Kategori listesine geri dön!</span></a>
+                    </div>
+                </div>              
+            </div>          
+        </div>      
+    </div>  
+</div>
+
+
+
+
+
+

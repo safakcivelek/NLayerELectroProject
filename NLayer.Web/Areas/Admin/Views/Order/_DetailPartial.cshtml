@@ -1,0 +1,52 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model OrderDto
+@{
+    ViewData["Title"] = "Sipariş Detay";
+}
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:yellow;height:60px;">
+                <h5 class="modal-title"><span class="fas fa-newspaper"></span> @Model.Order.Id Numaralı Sipariş Görüntüleniyor...</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="İptal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="height:170px;">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" style="height:150px;">
+                        <thead style="background-color:aqua;">
+                            <tr>
+                                <th style="width:2%">ID</th>
+                                <th style="width:10%">Ülke</th>
+                                <th style="width:10%">Şehir</th>
+                                <th style="width:10%">Posta Kodu</th>
+                                <th style="width:20%">Sipariş Durumu</th>
+                                <th style="width:20%">Açıklama</th>
+                                <th>Açık Adres</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Model.Order.Id</td>
+                                <td>@Model.Order.Country</td>
+                                <td>@Model.Order.City</td>
+                                <td>@Model.Order.PostalCode</td>
+                                <td>@(Model.Order.Status == 0 ? "Sipariş Alındı, Onaylanmayı Bekliyor..." : "Sipariş Onaylandı")</td>
+                                <td>@Model.Order.Description</td>
+                                <td>@Model.Order.Address</td>
+                              </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="margin-top:10px;"></div>
+           
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-block" data-dismiss="modal"><span class="fas fa-times"></span> Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+

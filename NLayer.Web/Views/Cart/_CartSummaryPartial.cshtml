@@ -1,0 +1,34 @@
+﻿@using NLayer.Web.Models.Cart;
+@model Cart
+<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+    <i class="fa fa-shopping-cart"></i>
+    <span>Sepetim</span>
+    <div class="qty">@Model.CartLines.Count</div>
+</a>
+<div class="cart-dropdown">
+
+    <div class="cart-list">
+        @foreach (var item in Model.CartLines)
+        {
+            <div class="product-widget">
+                <div class="product-img">
+                    <img src="/img/@item.Product.ImageUrl"  alt="">
+                </div>
+                <div class="product-body">
+                    <h3 class="product-name"><a asp-controller="Product" asp-action="Detail" asp-route-productId="@item.Product.Id">@item.Product.Name</a></h3>
+                    <h4 class="product-price"><span class="qty">@(item.Quantity)x</span>@(item.Product.Price.ToString("C2"))</h4>
+                </div>
+                <button class="delete"><i class="fa fa-close"></i></button>
+            </div>
+        }
+    </div>
+    <div class="cart-summary">
+        <small>@Model.CartLines.Count Ürün(s) seçildi</small>
+        <h5>TOPLAM: @Model.Total().ToString("C2")</h5>
+    </div>
+    <div class="cart-btns">
+        <a asp-controller="Cart" asp-action="Index">Sepete Git</a>
+        <a asp-controller="Cart" asp-action="Checkout">Ödeme Yap  <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+

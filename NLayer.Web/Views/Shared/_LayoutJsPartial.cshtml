@@ -1,0 +1,35 @@
+﻿<!-- jQuery Plugins -->
+<script src="~/Electro/js/jquery.min.js"></script>
+<script src="~/Electro/js/bootstrap.min.js"></script>
+<script src="~/Electro/js/slick.min.js"></script>
+<script src="~/Electro/js/nouislider.min.js"></script>
+<script src="~/Electro/js/jquery.zoom.min.js"></script>
+<script src="~/Electro/js/main.js"></script>
+
+<script src="~/ComingSoon/vendor/select2/select2.min.js"></script>
+<script src="~/ComingSoon/vendor/countdowntime/moment.min.js"></script>
+<script src="~/ComingSoon/vendor/countdowntime/moment-timezone.min.js"></script>
+<script src="~/ComingSoon/vendor/countdowntime/moment-timezone-with-data.min.js"></script>
+<script src="~/ComingSoon/vendor/countdowntime/countdowntime.js"></script>
+
+<script>
+    $('.cd100').countdown100({
+        /*Set Endtime here*/
+        /*Endtime must be > current time*/
+        endtimeYear: 0,
+        endtimeMonth: 0,
+        endtimeDate: 2,
+        endtimeHours: 24,
+        endtimeMinutes: 0,
+        endtimeSeconds: 0,
+        timeZone: ""
+        // ex:  timeZone: "America/New_York"
+        //go to " http://momentjs.com/timezone/ " to get timezone
+    });
+</script>
+<script src="~/ComingSoon/vendor/tilt/tilt.jquery.min.js"></script>
+<script>
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>

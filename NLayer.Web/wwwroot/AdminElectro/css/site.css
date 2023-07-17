@@ -1,0 +1,15 @@
+﻿
+/* UserImage Size / Start */
+.my-image{
+    border-radius: 5px;
+    max-width:75px;
+    max-height:75px;
+    border:2px solid #d3d3d3;  
+}
+.my-image-table {
+    border-radius: 5px;
+    max-width: 75px;
+    max-height: 75px;
+    border: 2px solid #d3d3d3; 
+}
+/* UserImage Size / End */

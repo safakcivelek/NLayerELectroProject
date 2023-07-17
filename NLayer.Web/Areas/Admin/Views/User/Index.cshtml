@@ -1,0 +1,85 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model UserListDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Kullanıcılar Listesi";
+}
+<ol class="breadcrumb mt-3">
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="User" asp-action="Index">Kullanıcılar</a></li>
+</ol>
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="card mb-3 mt-3">
+    <div class="card-header" style="background-color:#212529; color:white;height:55px;">
+        <i class="fas fa-table mr-1"></i>
+        Kullanıcılar Listesi
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover" id="userTable">
+            <thead style="background-color:#e9ecef;">
+                <tr>
+                    <th>ID</th>
+                    <th>Kullanıcı Adı</th>
+                    <th>E-Posta Adresi</th>
+                    <th>Adı</th>
+                    <th>Soyadı</th>
+                    <th>Telefon Numarası</th>
+                    <th style="width:25%">Hakkında</th>
+                    <th>Resim</th>
+                    <th style="text-align:center;vertical-align:middle;"><a asp-action="Add" asp-controller="User" asp-area="Admin" class="btn btn-success ml-3"><span class="fa-solid fa-user-plus"></span> Ekle</a></th>
+                </tr>
+            </thead>
+            <tfoot style="background-color:#e9ecef;">
+                <tr>
+                    <th>ID</th>
+                    <th>Kullanıcı Adı</th>
+                    <th>E-Posta Adresi</th>
+                    <th>Adı</th>
+                    <th>Soyadı</th>
+                    <th>Telefon Numarası</th>
+                    <th>Hakkında</th>
+                    <th>Resim</th>
+                    <th style="text-align:center;vertical-align:middle;">İşlemler</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr name="@user.Id">
+                        <td>@user.Id</td>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>
+                            @(user.About.Length < 100
+                                ? user.About
+                                : (user.About.Substring(0, 145)) )
+                            <button class="btn-link btn-detail" userId="@user.Id" style="font-size:11px;">devamı...</button>
+                        </td>
+                        <td style="text-align:center;vertical-align:middle;"><img src="~/img/@user.Picture" alt="@user.UserName" class="my-image-table" /></td>
+
+                        <td style="text-align:center;vertical-align:middle;">
+                            <div>
+                                <a class="btn btn-primary btn-sm btn-update" asp-area="Admin" asp-action="Update" asp-controller="User" asp-route-userId="@user.Id"><span class="fas fa-edit"></span></a>
+                                <button class="btn btn-danger btn-sm btn-delete" userId="@user.Id"><span class="fas fa-minus-circle"></span></button>
+                            </div>
+                            <div class="mt-2">
+                                <button class="btn btn-info btn-sm btn-detail" userId="@user.Id"><span class="fas fa-newspaper"></span></button>
+                                <button class="btn btn-warning btn-sm btn-assign" userId="@user.Id"><span class="fas fa-user-shield"></span></button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts
+    {
+    <script src="~/AdminElectro/js/usersIndex.js" type="application/ecmascript"></script>
+    }
+
+
+

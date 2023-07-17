@@ -1,0 +1,32 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@using NLayer.Web.Models;
+@model ProductDetailViewModel
+
+<div class="col-md-3">
+    <div id="review-form form-card">      
+        <form class="review-form" asp-controller="Comment" asp-action="Add" method="post" id="form-comment-add" asp-route-productId="@Model.ProductDto.Product.Id">
+            <input name="IsValid" type="hidden" value="@ViewData.ModelState.IsValid.ToString()" />
+            @*<div asp-validation-summary="All" class="text-danger" id="validation-summary" aria-hidden="true" style="display:none"></div>*@
+            <input type="hidden" asp-for="CommentAddDto.ProductId" />
+
+            <input class="input" type="text" placeholder="Adınız" asp-for="CommentAddDto.CreatedByName" />
+            <span class="text-danger" asp-validation-for="CommentAddDto.CreatedByName"></span>
+            @*<input class="input" type="email" placeholder="E-Posta Adresiniz" >*@
+            <textarea class="input" placeholder="Yorumunuz" asp-for="CommentAddDto.Text"></textarea>
+            <span class="text-danger" asp-validation-for="CommentAddDto.Text"></span>
+            <div class="input-rating">
+            <span>Puanınız: </span>
+            <div class="stars">
+            <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
+            <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
+            <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
+            <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
+            <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+            </div> 
+            <span style="color:red;">(Puanlama şu anda pasif durumda)</span>
+            </div>
+            <button class="primary-btn" id="btn-save">Ekle</button>
+        </form>
+    </div>
+</div>
+<!-- /Review Form -->

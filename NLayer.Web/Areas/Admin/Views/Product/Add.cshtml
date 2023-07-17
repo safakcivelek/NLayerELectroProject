@@ -1,0 +1,95 @@
+﻿@using NLayer.Web.Areas.Admin.Models;
+@model ProductAddViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Ürün Ekle";
+}
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-success mt-4" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <center><span class="fas fa-check fa-lg" style="color:green;"></span> @ViewData["Message"]</center>
+    </div>
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-5 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4"><span class="fa-solid fa-user-plus" style="color:#007bff;"></span> Ürün Ekle</h3></div>
+                <div class="card-body">
+
+                    <form asp-area="Admin" asp-controller="Product" asp-action="Add" method="post" enctype="multipart/form-data">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="Name"></label>
+                                <input asp-for="Name" class="form-control" placeholder="Lütfen, ürün adı giriniz..." />
+                                <span class="text-danger" asp-validation-for="Name"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Price"></label>
+                                <input asp-for="Price" class="form-control" />
+                                <span class="text-danger" asp-validation-for="Price"></span>
+                            </div>
+                            @*SelectList*@
+                            <div class="form-group col-md-6">
+                                <label for="categoryList" asp-for="CategoryId"></label>
+                                <select id="categoryList" class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories,"Id","Name"))">
+                                    <option value="">Lütfen, kategori seçiniz...</option>
+                                </select>
+                                <span class="text-danger" asp-validation-for="CategoryId"></span>
+                            </div>
+                           
+                            <div class="form-group col-md-6">
+                                <label asp-for="Stock"></label>
+                                <input asp-for="Stock" class="form-control" />
+                                <span class="text-danger" asp-validation-for="Stock"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Description"></label>
+                                <textarea asp-for="Description" class="form-control"  placeholder="Lütfen, ürün açıklaması giriniz..."></textarea>
+                                <span class="text-danger" asp-validation-for="Description"></span>
+                            </div>
+                            
+
+                            <div class="form-group col-md-6">
+                                <label asp-for="Discount"></label>
+                                <input asp-for="Discount" class="form-control" />
+                                <span class="text-danger" asp-validation-for="Discount"></span>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-row">
+                            <div class="form-group form-check col-md-3 mt-4">
+                                <input asp-for="IsActive" type="checkbox" />
+                                <label asp-for="IsActive"></label>
+                                <span class="text-danger" asp-validation-for="IsActive"></span>
+                            </div>
+                             
+                            <div class="form-group form-check  col-md-3 mt-4">
+                                <input asp-for="IsDiscounted" type="checkbox" />
+                                <label asp-for="IsDiscounted"></label>
+                                <span class="text-danger" asp-validation-for="IsDiscounted"></span>
+                            </div>
+                            <div class="form-group col-md-6" style="margin-top:-10px;">
+                                <label asp-for="ImageUrlFile">Resim Ekle</label>
+                                <input type="file" id="ImageUrlUpload" accept="image/*" class="form-control-file" asp-for="ImageUrlFile" />
+                                <span class="text-danger" asp-validation-for="ImageUrlFile"></span>
+                            </div>
+                        </div>                                                          
+                        <hr />
+                        <div class="small">
+                            <button class="btn btn-primary btn-block"><span class="fas fa-save"></span> Kaydet</button>
+                            <a class="btn btn-danger btn-block" asp-area="Admin" asp-controller="Product" asp-action="Add"><span class="fas fa-times"></span> İptal Et</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <div>
+                        <a asp-area="Admin" asp-controller="Product" asp-action="Index"><span class="fas fa-list-ul"></span> <span>Ürün listesine geri dön!</span></a>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+</div>

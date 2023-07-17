@@ -1,0 +1,73 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model OrderListDto
+@{
+    ViewBag.Title = "Sipariş Detay";
+}
+<div class="container">
+    <div class="card" style="margin-top:30px;">
+        <div class="card-header">
+            <h2 class="color-white" style="color:black;">Siparişlerim</h2>
+        </div>
+        <div class="card-body" style="margin-top:30px;">
+            <table class="table table-bordered table-hover">
+                <thead style="background-color:#e9ecef;">
+                    <tr>
+                        <th>Sipariş Tarihi</th>
+                        <th>Sipariş No</th>
+                        <th>Sipariş Özeti</th>
+                        <th>Alıcı</th>
+                        <th>Tutar</th>
+                        <th>Sipariş Durumu</th>
+                        <th>Resim</th>
+                        <th>Sipariş Detayı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model.Orders)
+                    {
+                        <tr>
+                            <td>@order.CreatedDate</td>
+                            <td>@order.OrderNumber</td>
+                            <td>@(order.OrderDetails.Count != 0 ? order.OrderDetails.Count : "0") Ürün</td>
+                            <td>@(order.User.FirstName + " " + order.User.LastName)</td>
+                            <td>@order.Total.ToString("C2")</td>
+                            @if (!order.IsActive)
+                            {
+                                <td style="color:red;">Sipariş Alındı, Onay Bekleniyor...</td>
+                            }
+                            else
+                            {
+                                <td style="color:green;">Sipariş Onaylandı.</td>
+                            }
+                            <td></td>
+                            <td><a class="btn btn-primary btn-sm" asp-controller="Order" asp-action="OrderDetail" asp-route-id="@order.Id">Sipariş Detayı</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+<div class="container" style="background-color:#337ab7;margin-top:40px;margin-bottom:60px; color:white;padding:25px 0; border:2px solid ;border-radius:6px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center col-md-3">
+                <i class="fa fa-shopping-bag fa-3x" aria-hidden="true"></i>
+                <p>KARGO BEDAVA</p>
+            </div>
+            <div class="text-center col-md-3">
+                <i class="fa fa-truck fa-3x" aria-hidden="true"></i>
+                <p> HIZLI TESLİMAT</p>
+            </div>
+            <div class="text-center col-md-3">
+                <i class="fa fa-calendar-plus-o fa-3x" aria-hidden="true"></i>
+                <p> KOLAY İADE</p>
+            </div>
+            <div class="text-center col-md-3">
+                <i class="fa fa-phone-square fa-3x" aria-hidden="true"></i>
+                <p>TELEFONLA SİPARİŞ</p>
+            </div>
+        </div>
+    </div>
+</div>

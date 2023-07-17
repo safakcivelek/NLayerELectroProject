@@ -1,0 +1,25 @@
+﻿<!-- Genel bir Error Sayfası. AdminArea ya da ElectroArea bu sayfayı kullanabilir. -->
+@using NLayer.Core.OtherEntities;
+@{
+    Layout = "_ErrorLayout";
+    ViewBag.Title = "Sunucu Hatası (500)";
+    // Burada  "as Mvc ErrorModel" olarak vermemiz gerekiyor Çünkü; ViewData da MvcErrorModel adlı bir obje var fakat bu objenin hangi tipte      olduğunu derleyici şuan da bilmiyor. Bunu benim aktarmam gerekiyor.
+    // Yani objeyı "MvcErrorModel" adıyla al ve sana gelecek olan objenin tipi MvcErrorModel olacak demiş oluyorum.
+
+    MvcErrorModel errorModel = ViewData["MvcErrorModel"] as MvcErrorModel;
+}
+<div class="col-lg-12">
+    <div class="text-center mt-4">
+        <h1 class="display-1">500</h1>
+        <p class="lead">@errorModel.Message</p>
+        @if (errorModel.Detail != null)
+        {
+            <p class="lead">@errorModel.Detail</p>
+        }
+        @*Burada Area alanı belirtmeme gerek yok çünkü hata nerde oluştuysa o Area'nın Home/Index'ine gidecek.*@
+        <a  style="color:yellow;" asp-controller="Home" asp-action="Index">
+            <i class="fas fa-arrow-left mr-1"></i> 
+            Anasayfa'ya dönmek için tıklayınız.
+        </a>
+    </div>
+</div>

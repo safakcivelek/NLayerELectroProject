@@ -1,0 +1,105 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@using NLayer.Core.Utilities.Results.ComplexTypes;
+@model OrderUpdateDto
+@{
+    ViewData["Title"] = "Sipariş Düzenle";
+}
+
+@if (ViewData["MessageSuccess"] != null)
+{
+    <div class="alert alert-success mt-4" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <center><span class="fas fa-check fa-lg" style="color:green;"></span> @ViewData["MessageSuccess"]</center>
+    </div>
+}
+@if (ViewData["MessageError"] != null)
+{
+    <div class="alert alert-danger mt-4" role="alert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <center><span class="fas fa-times fa-lg" style="color:red;"></span> @ViewData["MessageError"]</center>
+    </div>
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg border-5 rounded-lg mt-4">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4"><span class="fas fa-edit" style="color:#007bff; "></span> Sipariş Düzenle</h3></div>
+                <div class="card-body">
+
+                    <form asp-area="Admin" asp-controller="Order" asp-action="Update" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+                       @* UserId'yi burada vermessem Fk kısıtlaması hatası alıyorm.*@
+                        <input type="hidden" asp-for="UserId" />
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="Description"></label>
+                                <textarea asp-for="Description" class="form-control" placeholder="Lütfen, açıklama giriniz." rows="2"></textarea>
+                                <span class="text-danger" asp-validation-for="Description"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Address"></label>
+                                <textarea asp-for="Address" class="form-control" placeholder="Lütfen, açık adresinizi giriniz." rows="2"></textarea>
+                                <span class="text-danger" asp-validation-for="Address"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Country"></label>
+                                <input class="form-control" asp-for="Country" placeholder="Lütfen, ülke adı giriniz." />
+                                <span class="text-danger" asp-validation-for="Country"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="City"></label>
+                                <input class="form-control" asp-for="City" placeholder="Lütfen, şehir adı giriniz." />
+                                <span class="text-danger" asp-validation-for="City"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="PostalCode"></label>
+                                <input class="form-control" asp-for="PostalCode" placeholder="Lütfen, posta kodu giriniz." />
+                                <span class="text-danger" asp-validation-for="PostalCode"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="Status"></label>
+                                <input class="form-control" asp-for="Status" value="@(Model.Status == OrderStatus.ReceivedOrder
+                                                            ? "Onaylanmadı!"
+                                                            : "Onaylandı")" placeholder="Lütfen, siparişin durumunu giriniz." disabled>
+                                <span class="text-danger" asp-validation-for="Status"></span>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-row">
+                            <div class="col-md-3"></div>
+                            <div class="form-group form-check col-md-4 mt-3">
+                                <input asp-for="IsActive" type="checkbox" />
+                                <label asp-for="IsActive">@(Model.IsActive ? "Sipariş Onayını Kaldır!" : "Siparişi Onayla!")</label>
+                                <span class="text-danger" asp-validation-for="IsActive"></span>
+                            </div>
+                            <div class="form-group form-check col-md-4 mt-3">
+                                <input asp-for="IsDeleted" type="checkbox" />
+                                <label asp-for="IsDeleted"></label>
+                                <span class="text-danger" asp-validation-for="IsDeleted"></span>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                        <hr />
+                        <div class="small">
+                            <button class="btn btn-primary btn-block"><span class="fas fa-save"></span> Kaydet</button>
+                            <a class="btn btn-danger btn-block" asp-area="Admin" asp-controller="Order" asp-action="Update" asp-route-orderId="@Model.Id"><span class="fas fa-times"></span> İptal Et</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <div>
+                        <a asp-area="Admin" asp-controller="Order" asp-action="Index"><span class="fas fa-list-ul"></span> <span>Sipariş listesine geri dön!</span></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

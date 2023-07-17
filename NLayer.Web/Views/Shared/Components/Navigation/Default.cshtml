@@ -1,0 +1,41 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model CategoryListDto
+@{
+    var selectedCategory = ViewContext.RouteData.Values["categoryId"];   
+}
+<!-- NAVIGATION -->
+<nav id="navigation">
+    <div class="container">
+        <div id="responsive-nav">           
+            <ul class="main-nav nav navbar-nav">
+                
+                <li class="@(Context.Request.Path == "/" ? "active" : "")"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+                <li class="@(Context.Request.Path =="/Home/Products" ? "active" : "")"><a asp-controller="Home" asp-action="Products" asp-route-categoryId="@null">Ürünler</a></li>
+                @foreach (var category in Model.Categories)
+                {
+                    
+                    if (selectedCategory != null)
+                    {
+                        if (category.Id == int.Parse(selectedCategory.ToString()))
+                        {
+                            <li class="active"><a asp-controller="Home" asp-action="Products" asp-route-categoryId="@category.Id">@category.Name</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-controller="Home" asp-action="Products" asp-route-categoryId="@category.Id">@category.Name</a></li>
+                        }
+                    }
+                    else
+                    {
+                    <li><a asp-controller="Home" asp-action="Products" asp-route-categoryId="@category.Id">@category.Name</a></li>                       
+                    }
+                }
+                <li><a>/</a></li>
+                <li class="@(Context.Request.Path == "/Home/About" ? "active" : "")"><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
+                <li class="@(Context.Request.Path == "/Home/Contact" ? "active" : "")"><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- /NAVIGATION -->

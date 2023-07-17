@@ -1,0 +1,79 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model CategoryListDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Silinmiş Kategoriler";
+}
+
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Category" asp-action="DeletedCategories">Silinmiş Kategoriler</a></li>
+</ol>
+<div class="card mb-4 mt-2">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        <span style="font-size:17px;">Silinmiş Kategoriler</span>
+        <span style="color:darkgray"> / Admin</span>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="categoriesTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>                       
+                        <th>ID</th>
+                        <th>Adı</th>
+                        <th>Açıklaması</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Oluşturan Kullanıcı Adı</th>
+                        <th>Son Düzenlenme Tarihi</th>
+                        <th>Son Düzenleyen Kullanıcı Adı</th>
+                        <th style="text-align:center;vertical-align:middle;"><a asp-action="Add" asp-controller="Category" asp-area="Admin" class="btn btn-success ml-3"><span class="fa-solid fa-user-plus"></span> Ekle</a></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Adı</th>
+                        <th>Açıklaması</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Oluşturan Kullanıcı Adı</th>
+                        <th>Son Düzenlenme Tarihi</th>
+                        <th>Son Düzenleyen Kullanıcı Adı</th>
+
+                        <th style="text-align:center;vertical-align:middle;">İşlemler</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <tr name="@category.Id">                           
+                            <td>@category.Id</td>
+                            <td>@category.Name</td>
+                            <td>@category.Description</td>
+                            <td>@(category.IsActive ? "Evet" : "Hayır")</td>
+                            <td>@(category.IsDeleted ? "Evet" : "Hayır")</td>
+                            <td>@category.CreatedDate.ToShortDateString()</td>
+                            <td>@category.CreatedByName</td>
+                            <td>@category.ModifiedDate.ToShortDateString()</td>
+                            <td>@category.ModifiedByName</td>
+
+                            <td style="text-align:center;vertical-align:middle;">
+                                <button class="btn btn-warning btn-sm btn-undo" categoryId="@category.Id"><span class="fas fa-undo"></span></button>
+
+                                <button class="btn btn-danger btn-sm btn-hardDelete" categoryId="@category.Id"><span class="fas fa-minus-circle"></span></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/AdminElectro/js/categoriesIndex.js" type="application/ecmascript"></script>
+}

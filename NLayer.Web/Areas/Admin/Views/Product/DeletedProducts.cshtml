@@ -1,0 +1,95 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model ProductListDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Silinmiş Ürünler";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Product" asp-action="DeletedProducts">Silinmiş Ürünler</a></li>
+</ol>
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Silinmiş Ürünler
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="productsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori</th>
+                        <th>Ürün Adı</th>
+                        <th>Küçük Resim</th>
+                        <th>Fiyat</th>
+                        <th>Stok</th>
+                        <th>Beğeni Puanı</th>
+                        <th>Beğeni Sayısı</th>
+                        <th>Yorum Sayısı</th>
+                        <th>İndirimli Mi?</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+
+                        <th style="text-align:center;vertical-align:middle;width:9%;"><a asp-action="Add" asp-controller="Product" asp-area="Admin" class="btn btn-success ml-3"><span class="fa-solid fa-user-plus"></span> Ekle</a></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori</th>
+                        <th>Adı</th>
+                        <th>Küçük Resim</th>
+                        <th>Fiyat</th>
+                        <th>Stok</th>
+                        <th>Beğeni Puanı</th>
+                        <th>Beğeni Sayısı</th>
+                        <th>Yorum Sayısı</th>
+                        <th>İndirimli Mi?</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                        <th style="text-align:center;vertical-align:middle;">İşlemler</th>
+                    </tr>
+                </tfoot>
+
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr name="@product.Id">
+                            <td>@product.Id</td>
+                            <td>@product.Category.Name</td>
+                            <td>@product.Name</td>
+                            <td><img src="~/img/@product.ImageUrl" class="my-image-table" /></td>
+                            <td>@product.Price</td>
+                            <td>@product.Stock</td>
+                            <td>@product.StarPoint</td>
+                            <td>@product.StarGivenUserCount</td>
+                            <td>@product.Comments.Count</td>
+                            <td>@(product.IsDiscounted ? "Evet" : "Hayır")</td>
+                            <td>@(product.IsActive ? "Evet" : "Hayır")</td>
+                            <td>@(product.IsDeleted ? "Evet" : "Hayır")</td>
+
+                            <td style="text-align:center;vertical-align:middle;">
+                                <!-- asp-route-id =>  Bizim Action üzerinde beklediğmiz parametredir.-->
+                                <button class="btn btn-warning btn-sm btn-undo" productId="@product.Id"><span class="fas fa-undo"></span></button>
+
+                                <button class="btn btn-danger btn-sm  btn-hardDelete" productId="@product.Id"><span class="fas fa-minus-circle"></span></button>
+
+                                @*<div class="mt-2"></div>*@
+                                @*<a class="btn btn-success btn-sm btn-detail" asp-area="Admin" asp-action="GetDetail" asp-controller="Product" asp-route-productId="@product.Id"><span class="fas fa-newspaper"></span></a>*@
+
+                                <button class="btn btn-info btn-sm btn-detail" productId="@product.Id"><span class="fas fa-newspaper"></span></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/AdminElectro/js/productsIndex.js" type="application/ecmascript"></script>
+}

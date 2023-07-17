@@ -1,0 +1,141 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.min.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.min.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.min.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\css\bootstrap.rtl.min.css.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.js.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.bundle.min.js.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.js" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.js.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.esm.min.js.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.js" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.js.map" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js" />
+    <Content Remove="C:\Users\AirDefence\.nuget\packages\bootstrap\5.2.3\contentFiles\any\any\wwwroot\js\bootstrap.min.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Home\afd5hflq.cjk~" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="7.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.8" />
+    <PackageReference Include="NLog" Version="4.7.7" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.10.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NLayer.Service\NLayer.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\animated.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\core.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\icons.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\larger.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\list.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\path.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\less\variables.less" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <None Include="wwwroot\ComingSoon\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <None Include="wwwroot\ComingSoon\js\main.js" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\css\bootstrap.css.map" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\js\popper.js" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\js\popper.min.js" />
+    <None Include="wwwroot\ComingSoon\vendor\bootstrap\js\tooltip.js" />
+    <None Include="wwwroot\ComingSoon\vendor\countdowntime\countdowntime.js" />
+    <None Include="wwwroot\ComingSoon\vendor\countdowntime\moment-timezone-with-data.min.js" />
+    <None Include="wwwroot\ComingSoon\vendor\countdowntime\moment-timezone.min.js" />
+    <None Include="wwwroot\ComingSoon\vendor\countdowntime\moment.min.js" />
+    <None Include="wwwroot\ComingSoon\vendor\jquery\jquery-3.2.1.min.js" />
+    <None Include="wwwroot\ComingSoon\vendor\select2\select2.js" />
+    <None Include="wwwroot\ComingSoon\vendor\select2\select2.min.js" />
+    <None Include="wwwroot\ComingSoon\vendor\tilt\tilt.jquery.min.js" />
+    <None Include="wwwroot\Electro\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\Electro\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\Electro\fonts\slick.svg" />
+    <None Include="wwwroot\Electro\js\bootstrap.min.js" />
+    <None Include="wwwroot\Electro\js\jquery.min.js" />
+    <None Include="wwwroot\Electro\js\jquery.zoom.min.js" />
+    <None Include="wwwroot\Electro\js\main.js" />
+    <None Include="wwwroot\Electro\js\nouislider.min.js" />
+    <None Include="wwwroot\Electro\js\slick.min.js" />
+  </ItemGroup>
+
+</Project>

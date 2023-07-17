@@ -1,0 +1,94 @@
+﻿@using NLayer.Core.DTOs.Concert;
+@model CommentListDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Silinmiş Yorumlar";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Comment" asp-action="DeletedComments">Silinmiş Yorumlar</a></li>
+</ol>
+<div id="modalPlaceHolder" aria-hidden="true"></div>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Silinmiş Yorumlar
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="commentsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+
+                        <th>#</th>
+                        <th>Ürün</th>
+                        <th>Yorum İçeriği</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Oluşturan Kullanıcı Adı</th>
+                        <th>Son Düzenlenme Tarihi</th>
+                        <th>Son Düzenleyen Kullanıcı Adı</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+
+                        <th>#</th>
+                        <th>Ürün</th>
+                        <th>Yorum İçeriği</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Oluşturan Kullanıcı Adı</th>
+                        <th>Son Düzenlenme Tarihi</th>
+                        <th>Son Düzenleyen Kullanıcı Adı</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <tr name="@comment.Id">
+
+                            <td>@comment.Id</td>
+                            <td>@comment.Product.Name</td>
+                            <td>@(comment.Text.Length > 75 ? comment.Text.Substring(0, 90) : comment.Text) ...</td>
+                            <td>@(comment.IsActive ? "Evet" : "Hayır")</td>
+                            <td>@(comment.IsDeleted ? "Evet" : "Hayır")</td>
+                            <td>@comment.CreatedDate.ToShortDateString()</td>
+                            <td>@comment.CreatedByName</td>
+                            <td>@comment.ModifiedDate.ToShortDateString()</td>
+                            <td>@comment.ModifiedByName</td>
+
+                            <td style="text-align:center;vertical-align:middle;">
+                                <button class="btn btn-warning btn-sm btn-undo" commentId="@comment.Id"><span class="fas fa-undo"></span></button>
+
+                                <button class="btn btn-danger btn-sm  btn-hardDelete" commentId="@comment.Id"><span class="fas fa-minus-circle"></span></button>
+
+                                <div class="mt-2"></div>
+
+                                <button class="btn btn-info btn-sm btn-detail" commentId="@comment.Id"><span class="fas fa-newspaper"></span></button>
+
+                                @if (comment.IsActive)
+                                {
+                                    <button class="btn btn-success btn-sm btn-notApprove" commentId="@comment.Id"><span class="fas fa-thumbs-up"></span></button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-warning btn-sm btn-approve" commentId="@comment.Id"><span class="fas fa-thumbs-down"></span></button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts
+    {
+    <script src="~/AdminElectro/js/commentsIndex.js" type="application/ecmascript"></script>
+}
+
